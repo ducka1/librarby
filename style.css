@@ -1,0 +1,58 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+#mybooks, #container, #wrapper {
+    padding: 20px;
+}
+
+#container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    gap: 40px;
+}
+
+#wrapper {
+    background-color: rgb(211, 211, 211);
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+    width: 400px;
+}
+
+#add-book {
+    display: none;
+    flex-direction: column;
+    width: 200px;
+}
+
+.title {
+    font-size: 50px;
+    align-self: center;
+}
+
+.author {
+    align-self: flex-end;
+}
+
+.pages, .read {
+    align-self: center;
+    font-size: 20px;
+    margin-top: auto;
+}
+
+.bookbtn {
+    width: 200px;
+    align-self: center;
+    font-size: 20px;
+}
+
+.sep {
+    margin-top: auto;
+}
