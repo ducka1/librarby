@@ -4,11 +4,20 @@ const btn2 = document.querySelector('#btn2');
 const form = document.querySelector('#add-book');
 const container = document.querySelector('#container');
 
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
+// function Book(title, author, pages, read) {
+//     this.title = title;
+//     this.author = author;
+//     this.pages = pages;
+//     this.read = read;
+// }
+
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
 }
 
 function displayBooks(arr) {
@@ -87,10 +96,32 @@ btn.addEventListener('click', () => {
 
 // SEND FORM DATA AND DISPLAY BOOK
 btn2.addEventListener('click', () => {
-    const title = document.querySelector('#title').value;
-    const author = document.querySelector('#author').value;
-    const pages = document.querySelector('#pages').value;
-    const read = document.querySelector('#read').checked;
-    myLibrary.push(new Book(title, author, pages, read));
-    displayBooks(myLibrary);
+    let stat = 0;
+
+    const title = document.querySelector('#title');
+    const author = document.querySelector('#author');
+    const pages = document.querySelector('#pages');
+    const read = document.querySelector('#read');
+
+    if (title.validity.valueMissing || author.validity.valueMissing || pages.validity.valueMissing) {
+        console.log('value is missing');
+        stat = 1;
+    }
+    if (title.validity.tooShort || author.validity.tooShort) {
+        console.log('enter 3 or more characters');
+        stat = 1;
+    }
+    if (title.validity.patternMismatch || author.validity.patternMismatch) {
+        console.log('enter letters');
+        stat = 1;
+    }
+    if (pages.validity.patternMismatch) {
+        console.log('enter a number');
+        stat = 1;
+    }
+
+    if (stat != 1) {
+        myLibrary.push(new Book(title.value, author.value, pages.value, read.checked));
+        displayBooks(myLibrary);
+    }
 });
